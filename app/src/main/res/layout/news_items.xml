@@ -3,84 +3,92 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="300dp">
-
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/default_half_margin">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/iv_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/ivThumbnail"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/news_image_height"
+            android:contentDescription="Image news"
+            android:src="@color/teal_200"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:src="@color/teal_700"
             app:layout_constraintTop_toTopOf="parent"
             tools:srcCompat="@tools:sample/avatars" />
 
-        <TextView
-            android:id="@+id/tv_tittle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/marge_default"
-            android:layout_marginTop="@dimen/marge_default"
-            tools:text="Flamengo vence Galo"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_title" />
-
-        <TextView
-            android:id="@+id/tv_description"
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/marge_default"
-            android:layout_marginTop="@dimen/marge_default"
-            android:layout_marginEnd="@dimen/marge_default"
+            android:layout_marginStart="@dimen/default_margin"
+            android:layout_marginTop="@dimen/default_margin"
+            android:layout_marginEnd="@dimen/default_margin"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_tittle"
-            tools:text="As meninas do Flamengo derrotaram o galo no último sábado " />
+            app:layout_constraintTop_toBottomOf="@+id/ivThumbnail"
+            tools:text="Ferroviária vence Palmeiras" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvDescription"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/default_margin"
+            android:layout_marginTop="@dimen/default_margin"
+            android:layout_marginEnd="@dimen/default_margin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+            tools:text="As meninas da Ferrinha derrotaram o Palmeiras no último domingo." />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_open_link"
+            android:id="@+id/btOpenLink"
             style="?attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/marge_default"
-            android:layout_marginTop="@dimen/marge_default"
-            android:text="Open Link"
+            android:layout_marginStart="@dimen/default_margin"
+            android:layout_marginTop="@dimen/default_margin"
+            android:layout_marginBottom="8dp"
+            android:text="Open link"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_description" />
+            app:layout_constraintTop_toBottomOf="@+id/tvDescription" />
 
         <ImageView
-            android:id="@+id/iv_favorite"
+            android:id="@+id/ivFavorite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="56dp"
-            app:layout_constraintBottom_toBottomOf="@+id/btn_open_link"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="@dimen/default_margin"
+            android:background="?android:selectableItemBackgroundBorderless"
             android:clickable="true"
-            android:contentDescription="Favorite Icon"
+            android:contentDescription="Title icon"
             android:focusable="true"
-            app:layout_constraintHorizontal_bias="0.74"
-            app:layout_constraintStart_toEndOf="@+id/btn_open_link"
-            app:layout_constraintTop_toTopOf="@+id/btn_open_link"
-            app:layout_constraintVertical_bias="0.541"
+            android:padding="4dp"
+            app:layout_constraintBottom_toBottomOf="@+id/btOpenLink"
+            app:layout_constraintEnd_toStartOf="@+id/ivShare"
+            app:layout_constraintTop_toTopOf="@+id/btOpenLink"
             app:srcCompat="@drawable/ic_favorite" />
+        <!-- Referência: Incluir o Efeito de Ripple (https://stackoverflow.com/a/61012286/3072570) -->
 
         <ImageView
-            android:id="@+id/iv_share"
+            android:id="@+id/ivShare"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="@dimen/default_margin"
+            android:background="?android:selectableItemBackgroundBorderless"
             android:clickable="true"
-            android:contentDescription="Share Icon"
+            android:contentDescription="Meu icone"
             android:focusable="true"
-            app:layout_constraintBottom_toBottomOf="@+id/btn_open_link"
+            android:padding="4dp"
+            app:layout_constraintBottom_toBottomOf="@+id/btOpenLink"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/btn_open_link"
+            app:layout_constraintTop_toTopOf="@+id/btOpenLink"
             app:srcCompat="@drawable/ic_share_24" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </com.google.android.material.card.MaterialCardView>
