@@ -1,2 +1,2 @@
 # Soccer  News
-Aplicativo sobre noticias de futebol femenino
+App Nativo Android de Notícias Sobre Futebol Feminino
