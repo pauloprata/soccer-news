@@ -8,6 +8,7 @@
         <entry key="app/src/main/res/layout/fragment_favorites.xml" value="0.2" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.2" />
         <entry key="app/src/main/res/layout/fragment_news.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/menu_toolbar.xml" value="0.2" />
         <entry key="app/src/main/res/layout/news_items.xml" value="0.1" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.2" />
       </map>

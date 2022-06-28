@@ -1,7 +1,8 @@
-package com.example.newssoccer;
+package com.example.newssoccer.ui;
 
 import android.os.Bundle;
 
+import com.example.newssoccer.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;

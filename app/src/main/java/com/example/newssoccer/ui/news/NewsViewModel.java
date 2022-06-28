@@ -1,9 +1,13 @@
 package com.example.newssoccer.ui.news;
 
+import android.os.AsyncTask;
+
+import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.newssoccer.data.SoccerNewsRepository;
 import com.example.newssoccer.data.remote.SoccerNewsApi;
 import com.example.newssoccer.domain.News;
 
@@ -18,38 +22,47 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class NewsViewModel extends ViewModel {
 
+    public enum State {
+        DOING, DONE, ERROR;
+    }
+
     private final MutableLiveData<List<News>> news = new MutableLiveData<>();
-    private final SoccerNewsApi api;
+    private final MutableLiveData<State> state = new MutableLiveData<>();
 
     public NewsViewModel() {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://pauloprata.github.io/api-soccer-news-app/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        api= retrofit.create(SoccerNewsApi.class);
         this.findNews();
     }
 
-    private void findNews() {
-        api.getNews().enqueue(new Callback<List<News>>() {
+    public void findNews() {
+        state.setValue(State.DOING);
+        SoccerNewsRepository.getInstance().getRemoteApi().getNews().enqueue(new Callback<List<News>>() {
             @Override
-            public void onResponse(Call<List<News>> call, Response<List<News>> response) {
-                if(response.isSuccessful()){
+            public void onResponse(@NonNull Call<List<News>> call, @NonNull Response<List<News>> response) {
+                if (response.isSuccessful()) {
                     news.setValue(response.body());
-                }else{
-
+                    state.setValue(State.DONE);
+                } else {
+                    state.setValue(State.ERROR);
                 }
             }
 
             @Override
-            public void onFailure(Call<List<News>> call, Throwable t) {
-
+            public void onFailure(@NonNull Call<List<News>> call, Throwable error) {
+                error.printStackTrace();
+                state.setValue(State.ERROR);
             }
         });
     }
 
+    public void saveNews(News news) {
+        AsyncTask.execute(() -> SoccerNewsRepository.getInstance().getLocalDb().newsDao().save(news));
+    }
+
     public LiveData<List<News>> getNews() {
         return this.news;
+    }
+
+    public LiveData<State> getState() {
+        return this.state;
     }
 }
