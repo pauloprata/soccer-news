@@ -3,7 +3,7 @@ App Nativo Android de Notícias Sobre Futebol Feminino
 
 
 # Bibliotecas e tecnologias usadas
-*Java
+* Java
 * Componente de navegação: uma activity contém vários fragments em vez de criar várias activites.
 * Retrofit: fazendo conexão HTTP com a Rest-API e convertendo o arquivo json.
 * Room: Salve as noticias no banco de dados local.
